@@ -1,0 +1,17 @@
+
+
+.btn {
+  border: 2px solid;
+  border-color: var(--main-color);
+  font-weight: bold;
+}
+
+.btn:hover {
+  color: white;
+  background-color: var(--main-color);
+}
+
+.btnActive {
+  color: white;
+  background-color: var(--main-color);
+}

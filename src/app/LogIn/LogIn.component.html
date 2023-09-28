@@ -1,0 +1,41 @@
+<div class="container d-flex justify-content-center flex-column align-items-center py-3">
+  <h3 class="w-75 m-3">Register now:</h3>
+
+  <form class="d-flex flex-column w-75" [formGroup]='LogInForm' (ngSubmit)="logInRes(LogInForm)">
+
+
+
+    <label for="email" class="mb-1">Email:</label>
+    <input type="email" id="email" class="form-control mb-2" formControlName="email">
+    <div class="d-flex flex-wrap">
+      <p *ngIf="LogInForm.get('email')?.getError('required') && LogInForm.get('email')?.touched"
+        class="alert alert-danger me-1 p-1 ">Email is required</p>
+      <p *ngIf="LogInForm.get('email')?.getError('email') && LogInForm.get('email')?.touched"
+        class="alert alert-danger me-1 p-1 ">Email must be example@example.com</p>
+    </div>
+
+    <label for="password" class="mb-1">password:</label>
+    <input type="password" id="password" class="form-control mb-2" formControlName="password">
+    <div class="d-flex flex-wrap">
+      <p *ngIf="LogInForm.get('password')?.getError('required') && LogInForm.get('password')?.touched"
+        class="alert alert-danger me-1 p-1 ">Password is required</p>
+      <p *ngIf="LogInForm.get('password')?.getError('pattern') && LogInForm.get('password')?.touched"
+        class="alert alert-danger me-1 p-1 ">Password must be Min-length 6 with no spacial chrs</p>
+    </div>
+
+
+    <p *ngIf="errorMessage" class="alert alert-danger ">{{errorMessage}}
+    </p>
+
+    <div class="text-end"><button class="btn" [disabled]="!LogInForm.valid">LogIn</button></div>
+
+  </form>
+
+
+
+
+
+
+
+
+</div>

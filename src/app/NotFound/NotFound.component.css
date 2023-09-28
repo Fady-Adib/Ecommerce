@@ -1,0 +1,7 @@
+.NotFound
+{
+  height: 80vh;
+  background-image: url(../../assets/images/error.svg);
+  background-repeat: no-repeat;
+  background-position: center;
+}

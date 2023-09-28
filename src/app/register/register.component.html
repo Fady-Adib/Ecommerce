@@ -1,0 +1,68 @@
+<div class="container d-flex justify-content-center flex-column align-items-center py-3">
+<h3 class="w-75 m-3">Register now:</h3>
+
+<form class="d-flex flex-column w-75" [formGroup]='registerForm' (ngSubmit)="RegisterRes(registerForm)">
+
+  <label for="name" class="mb-1">Name:</label>
+  <input type="text" id="name" class="form-control mb-2" formControlName="name">
+  <div class="d-flex flex-wrap">
+    <p *ngIf="registerForm.get('name')?.getError('required') && registerForm.get('name')?.touched"
+      class="alert alert-danger me-1 p-1 ">Name is required</p>
+    <p *ngIf="registerForm.get('name')?.getError('minlength') && registerForm.get('name')?.touched"
+      class="alert alert-danger me-1 p-1 ">Name Min-length is 5 chrs</p>
+    <p *ngIf="registerForm.get('name')?.getError('maxlength') && registerForm.get('name')?.touched"
+      class="alert alert-danger me-1 p-1 ">Name Max-length is 10 chrs</p>
+  </div>
+
+  <label for="email" class="mb-1">Email:</label>
+  <input type="email" id="email" class="form-control mb-2" formControlName="email">
+  <div class="d-flex flex-wrap">
+    <p *ngIf="registerForm.get('email')?.getError('required') && registerForm.get('email')?.touched"
+      class="alert alert-danger me-1 p-1 ">Email is required</p>
+    <p *ngIf="registerForm.get('email')?.getError('email') && registerForm.get('email')?.touched"
+      class="alert alert-danger me-1 p-1 ">Email must be example@example.com</p>
+  </div>
+
+  <label for="password" class="mb-1">password:</label>
+  <input type="password" id="password" class="form-control mb-2" formControlName="password">
+  <div class="d-flex flex-wrap">
+      <p *ngIf="registerForm.get('password')?.getError('required') && registerForm.get('password')?.touched"
+        class="alert alert-danger me-1 p-1 ">Password is required</p>
+      <p *ngIf="registerForm.get('password')?.getError('pattern') && registerForm.get('password')?.touched"
+        class="alert alert-danger me-1 p-1 ">Password must be Min-length 6 with no spacial chrs</p>
+    </div>
+
+  <label for="rePassword" class="mb-1"(input)="confirmPassword()">Re-Password:</label>
+  <input type="password" id="rePassword" class="form-control mb-2" formControlName="rePassword" (input)="confirmPassword()">
+  <div class="d-flex flex-wrap">
+    <p *ngIf="registerForm.get('rePassword')?.errors && registerForm.get('rePassword')?.touched"
+      class="alert alert-danger me-1 p-1 ">password must be matched </p>
+</div>
+
+  <label for="" class="mb-1">Phone:</label>
+  <input type="tel" id="phone" class="form-control mb-3" formControlName="phone">
+  <div class="d-flex flex-wrap">
+    <p *ngIf="registerForm.get('phone')?.getError('required') && registerForm.get('phone')?.touched"
+      class="alert alert-danger me-1 p-1 ">
+      Phone is required </p>
+    <p *ngIf="registerForm.get('phone')?.getError('minlength') && registerForm.get('phone')?.touched"
+      class="alert alert-danger me-1 p-1 ">Phone must be Egyptian Number</p>
+    <p *ngIf="registerForm.get('phone')?.getError('maxlength') && registerForm.get('phone')?.touched"
+      class="alert alert-danger me-1 p-1 ">
+      Phone must be Egyptian Number </p>
+  </div>
+  <p *ngIf="errorMessage" class="alert alert-danger ">{{errorMessage}}
+  </p>
+
+  <div class="text-end" ><button class="btn" [disabled]="!registerForm.valid">Register</button></div>
+
+</form>
+
+
+
+
+
+
+
+
+</div>
