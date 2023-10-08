@@ -1,15 +1,25 @@
 import { Component, OnInit } from '@angular/core';
+import { ProductsService } from '../Core/service/Products.service';
+import { Brand } from '../Core/InterFace/Product';
 
 @Component({
   selector: 'app-Brands',
   templateUrl: './Brands.component.html',
-  styleUrls: ['./Brands.component.css']
+  styleUrls: ['./Brands.component.css'],
 })
 export class BrandsComponent implements OnInit {
+allBrands:Brand[]=[]
 
-  constructor() { }
+  constructor(private _ProductsService: ProductsService) {}
 
-  ngOnInit() {
+  ngOnInit() {this.getBrands()}
+  getBrands() {
+    this._ProductsService.brandsApi().subscribe({
+      next:(res)=>{
+
+        this.allBrands=res.data
+         console.log(this.allBrands);
+      }
+    })
   }
-
 }

@@ -4,36 +4,53 @@ import { HttpClient} from "@angular/common/http";
 import jwtDecode from 'jwt-decode';
 
 @Injectable({
-  providedIn: 'root'
+  providedIn: 'root',
 })
 export class AuthService {
-userData:BehaviorSubject<any>=new BehaviorSubject('')
-constructor(private _HttpClient:HttpClient) {
-  if (localStorage.getItem('userToken')) {
- this.getUserData()
+  userData: BehaviorSubject<any> = new BehaviorSubject('');
+  constructor(private _HttpClient: HttpClient) {
+    if (localStorage.getItem('userToken')) {
+      this.getUserData();
+    }
   }
- }
 
- getUserData(){
+  getUserData() {
+    let codedToken = JSON.stringify(localStorage.getItem('userToken'));
+    console.log(codedToken);
 
-let codedToken=JSON.stringify(localStorage.getItem('userToken'))
-console.log(codedToken);
+    let encodedToken = jwtDecode(codedToken);
+    this.userData.next(encodedToken);
+    console.log(this.userData);
+  }
+  LoginApi(data: any): Observable<any> {
+    return this._HttpClient.post(
+      'https://ecommerce.routemisr.com/api/v1/auth/signin',
+      data
+    );
+  }
 
-
- let encodedToken=jwtDecode(codedToken);
-  this.userData.next(encodedToken);
-  console.log(this.userData);
-
-
-
-}
- LoginApi(data:any):Observable<any>{
-   return this._HttpClient.post("https://ecommerce.routemisr.com/api/v1/auth/signin",data);
- }
-
- RegisterApi(data:any):Observable<any>{
-
-  return this._HttpClient.post("https://ecommerce.routemisr.com/api/v1/auth/signup",data)
- }
-
+  RegisterApi(data: any): Observable<any> {
+    return this._HttpClient.post(
+      'https://ecommerce.routemisr.com/api/v1/auth/signup',
+      data
+    );
+  }
+  forgetPasswordApi(data: any): Observable<any> {
+    return this._HttpClient.post(
+      'https://ecommerce.routemisr.com/api/v1/auth/forgotPasswords',
+      data
+    );
+  }
+  SendodeApi(data: any): Observable<any> {
+    return this._HttpClient.post(
+      'https://ecommerce.routemisr.com/api/v1/auth/verifyResetCode',
+      data
+    );
+  }
+  setNewPasswordApi(data: any): Observable<any> {
+    return this._HttpClient.put(
+      'https://ecommerce.routemisr.com/api/v1/auth/resetPassword',
+      data
+    );
+  }
 }

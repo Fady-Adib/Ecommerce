@@ -27,7 +27,9 @@
     <p *ngIf="errorMessage" class="alert alert-danger ">{{errorMessage}}
     </p>
 
-    <div class="text-end"><button class="btn" [disabled]="!LogInForm.valid">LogIn</button></div>
+    <div class="text-end">
+      <span [routerLink]="['/LogIn/Forgetpassword']" routerLinkActive="router-link-active" class="me-4 pointer" >Forget password</span>
+      <button class="btn" [disabled]="!LogInForm.valid">LogIn</button></div>
 
   </form>
 

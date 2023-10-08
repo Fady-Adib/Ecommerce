@@ -1,3 +1,59 @@
-<p>
-  Cart works!
-</p>
+<div class="py-5"*ngIf="isThereCart">
+  <h1>Cart details:</h1>
+  <div class="d-flex justify-content-between">
+    <div>
+      <h5>
+        Total price: <span class="text-main">{{ totalCartPrice }}</span> EGP
+      </h5>
+      <h5>
+        Total item: <span class="text-main">{{ numOfCartItems }}</span>
+      </h5>
+    </div>
+    <h5>
+      Total pieces: <span class="text-main">{{ totalPieces }}</span>
+    </h5>
+  </div>
+  <div class="row py-4" *ngFor="let product of inCartProduct">
+    <div class="col-md-1">
+      <img
+        [src]="product.product.imageCover"
+        alt=""
+        class="imgCartCard img-fluid"
+      />
+    </div>
+    <div class="col-md-9">
+      <h6 class="m-0 p-2">{{ product.product.title }}</h6>
+      <h6 class="m-0 p-2">
+        <span class="text-main">{{ product.price }}</span> EGP
+      </h6>
+      <button
+        class="btn btn-outline-danger border-0 btnRemove"
+        (click)="removeItem(product.product.id)"
+      >
+        <i class="fa-solid fa-trash me-2" aria-hidden="true"></i>Remove
+      </button>
+    </div>
+    <div
+      class="col-md-2 text-end d-flex align-items-center justify-content-end"
+    >
+      <div>
+        <i
+          class="fa-solid fa-plus me-3 text-main btn"
+          (click)="updateItem(product.product.id, product.count + 1)"
+        ></i>
+        <span class="me-3">{{ product.count }}</span>
+        <i
+          class="btn fa-solid fa-subtract btn-outline-danger border-danger btnRemove"
+          (click)="updateItem(product.product.id, product.count - 1)"
+        ></i>
+      </div>
+    </div>
+  </div>
+  <div class="text-center">
+    <button type="button" class="btn mx-3"[routerLink]='["/Address",cartId,"online"]'>Pay online</button>
+  <button type="button" class="btn mx-3" [routerLink]='["/Address",cartId,"cash"]'>Pay cash</button>
+  <button type="button" class="btn btn-outline-danger  border-danger btnRemove mx-3" (click)="CLearCart()">clear your cart</button>
+</div>
+
+</div>
+<div *ngIf="!isThereCart" class=" py-5 text-center"><h4>There no cart yet</h4></div>

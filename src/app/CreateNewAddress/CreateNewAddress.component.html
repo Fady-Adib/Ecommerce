@@ -1,0 +1,25 @@
+
+<div class="container d-flex justify-content-center flex-column align-items-center py-3">
+<h3 class="w-75 m-3">Enter Your Address:</h3>
+
+<form class="d-flex flex-column w-75" [formGroup]='userAddressForm' (ngSubmit)="onSubmit(userAddressForm)" >
+  <label for="name" class="mb-1">Name:</label>
+  <input type="text" id="name" class="form-control mb-2" formControlName="name">
+  <label for="details" class="mb-1">Details:</label>
+  <input type="text" id="details" class="form-control mb-2" formControlName="details">
+  <label for="phone" class="mb-1">Phone:</label>
+  <input type="text" id="phone" class="form-control mb-2" formControlName="phone">
+  <label for="city" class="mb-1">City:</label>
+  <input type="text" id="city" class="form-control mb-2" formControlName="city">
+   <div class="text-end" ><button class="btn" [disabled]="!userAddressForm.valid">Save</button></div>
+
+</form>
+
+
+
+
+
+
+
+
+</div>

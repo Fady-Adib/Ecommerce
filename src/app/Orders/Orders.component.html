@@ -1,0 +1,15 @@
+<div class="py-5">
+  <div class="row g-2">
+    <div class="col-md-3" *ngFor="let order of userOrders">
+      <div class="card p-2">
+      <h6 class="fw-bold">Name: <span class="text-main">{{order.user.name}}</span></h6>
+      <h6 class="fw-bold">shipping to: <span class="text-main">{{order.shippingAddress?.details}}</span>, <span class="text-main">{{order.shippingAddress?.city}}</span></h6>
+      <h6 class="fw-bold">tax Price: <span class="text-main">{{order.taxPrice}}</span></h6>
+      <h6 class="fw-bold">shipping Price: <span class="text-main">{{order.shippingPrice}}</span></h6>
+      <h6 class="fw-bold">total Order Price: <span class="text-main">{{order.totalOrderPrice}}</span></h6>
+      <h6 class="fw-bold">paymentMethodType: <span class="text-main">{{order.paymentMethodType}}</span></h6>
+      <h6 class="fw-bold">isPaid: <span class="text-main">{{order.isPaid}}</span></h6>
+      <h6 class="fw-bold">isDelivered: <span class="text-main">{{order.isDelivered}}</span></h6>
+    </div></div>
+  </div>
+</div>

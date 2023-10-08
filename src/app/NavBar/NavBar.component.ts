@@ -10,6 +10,7 @@ import { Component, OnInit } from '@angular/core';
 export class NavBarComponent implements OnInit   {
 isScroll:boolean=false
 isLoggedIn:boolean=false
+typeOfProduct:string=''
   constructor(private _authService:AuthService, private _router:Router) {
 
  console.log( _authService.userData.getValue());
@@ -49,8 +50,7 @@ logOut(){
 localStorage.removeItem("userToken")
 // this._authService.userData.next('')
 console.log(this._authService.userData);
-
-this._router.navigate(['/Home']);
+this._router.navigate(['/LogIn']);
 this.isLoggedIn=false
 
 
